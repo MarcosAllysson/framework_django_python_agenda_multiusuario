@@ -23,6 +23,7 @@ def submit_login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         usuario = authenticate(username=username, password=password)
+
         if usuario is not None:
             login(request, usuario)
             return redirect('/')
@@ -31,6 +32,7 @@ def submit_login(request):
             messages.error(request, 'Usuário ou senha inválido.')
 
     return redirect('/')
+
 
 # só acessa quem estiver logado. Se não estiver, redireciona para login/
 @login_required(login_url='/login/')
@@ -43,11 +45,11 @@ def lista_eventos(request):
     dados = {'eventos': evento}
 
     #  pra listar só 1
-    #evento = Evento.objects.get(id=1)
+    # evento = Evento.objects.get(id=1)
 
     #  pra listar todos
-    #evento = Evento.objects.all()
-    #dados = {'eventos': evento}
+    # evento = Evento.objects.all()
+    # dados = {'eventos': evento}
     return render(request, 'agenda.html', dados)
 
 
@@ -83,7 +85,7 @@ def submit_evento(request):
                 evento.save()
 
             #  outra maneira:
-            #Evento.objects.filter(id=id_evento).update(titulo=titulo,
+            # Evento.objects.filter(id=id_evento).update(titulo=titulo,
             #                                           data_evento=data_evento,
             #                                           descricao=descricao)
         else:
@@ -122,8 +124,7 @@ def json_lista_eventos(request):
 
     return JsonResponse(list(evento), safe=False)
 
-
-#def index(request):
+# def index(request):
 #    """
 #    View para redirecionar o usuário quando tentar acessar url vazio ''
 #    """

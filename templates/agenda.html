@@ -11,9 +11,9 @@
     <!-- Criando lista de tópicos -->
     <ul style="font-size: 18px">
         {% for evento in eventos%}
-            <div style={% if evento.get_evento_atrasado %}
+            <div style='{% if evento.get_evento_atrasado %}
                         "color:red"
-                        {% endif %}>
+                        {% endif %}'>
                 <li> {{ evento.titulo }} - {{ evento.get_data_criacao }}
                     (<a href="evento/?id={{ evento.id }}">Editar</a> /
                     <a href="evento/delete/{{ evento.id }}/">Excluir</a>)
